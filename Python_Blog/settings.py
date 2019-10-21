@@ -170,7 +170,6 @@ STATIC_URL = '/static/'
 #  static Dirs for additionally pointing to static location !!!
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    '/var/www/static/',
 ]
 
 
