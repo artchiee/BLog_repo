@@ -1,0 +1,65 @@
+{% include "navigation.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+
+{% block content %}
+
+<html>
+
+<head>
+{% include "head.html" %}
+
+</head>
+<body>
+{% include "side_bar.html" %}    
+
+    <!-- Show messages here !! -->
+    <div class=" messages pt-3">
+        {% include "messages.html" %}
+    </div>
+
+<div class="container"style="margin : 0 auto ; padding-top : 10% ;" >
+    <h2 style="text-transform: uppercase; text-decoration: underline; " > Your Profile informations : </h2>
+
+
+<div id="myprofile" class="col-sm-6 col-sm-offset-3 ml-4"  style="margin : 0 auto ; padding-top : 10% ; padding-right : 10;">
+    {% if user.profile_user.profile_image %}
+        <div class="media" style=" size: 10px;">
+            <img style="width: 80% ; padding-right: 10px; " class="rounded-circle account-img"  src=" {{ user.profile_user.profile_image.url }} " >
+    {% endif %}
+
+            <!-- Get user infos here  -->
+     <form method="post">
+         {% csrf_token %}
+         <fieldset class="form-group">
+             <legend class="border-bottom pt-2 mb-4">
+                 Profile Informations
+             </legend>
+                {{ user_form | crispy }}
+                {{ profile_form | crispy }}
+            
+         </fieldset>
+         <div class="form-group">
+             <button  class="btn btn-outline-info btn-lg" type="submit"><a href="{% url 'profile_page' %}"> Update </a></button>
+             <button  class="btn btn-outline-danger btn-lg" type="submit"><a href="#" >Go Offline</a></button>
+         </div>
+     </form>
+
+
+    </div>
+
+
+    <div class="clearfooter"></div>
+
+</div>
+</div>
+</body>
+</html>
+
+{% include "footer.html" %}
+
+{% endblock content %}
+
+

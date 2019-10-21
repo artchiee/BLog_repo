@@ -1,0 +1,47 @@
+<!-- Here we inherent the base templates from posts app -->
+{% include "navigation.html" %}
+{% load static %}
+
+{% include "head.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+<div class="container m-auto pt-5">
+    <h2> Log in page </h2>
+
+    <!-- Show messages here -->
+    <div class=" messages pt-3" style="width : 20%">
+        {% include "messages.html" %}
+    </div>
+
+    <div class="content-section">
+        <form class="pl-auto" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom pt-2 mb-4">
+                </legend>
+                {{ form | crispy }}
+            </fieldset>
+
+            <div class="form-group">
+                <button class="btn btn-outline-success btn-sm" type="submit"> SingIN </button>
+            </div>
+        </form>
+
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Don't Have an account ?? <a class="ml-3" href=" {% url 'Register' %}"> Sing UP Now</a>
+            </small>
+
+        </div>
+
+        <div class="clearfooter"></div>
+    </div>
+</div>
+
+
+
+{% include "footer.html" %}
+{% endblock content %}
