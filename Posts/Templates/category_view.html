@@ -1,0 +1,124 @@
+{% load static %}
+{% include "navigation.html" %}
+
+
+<html>
+<head>
+    {% include "head.html" %}
+
+</head>
+
+<body>
+
+    {% for obj in allcategories %}
+<h1 id="headerctg" class ="display-4 text-center m-auto pt-3 pb-3 ">{{ obj.category.category_name}}  </h1>
+    {% endfor %}
+{% block content %}
+
+{% for obj in allcategories  %}
+<section id="cardgroup">
+<!-- Cards section starts here -->
+	<div class="cards">
+			<!-- first card here -->
+		<div class="card">
+			<img class= "cardimg" src="{{ obj.image.url }}" alt="img">
+			<div class="card-body">
+				<h5 class="card-title"> {{ obj.post_title }}  | {{ obj.category.category_name }} ||
+				 {% if obj.draft %}
+            		<span style="color: red"> DRAFT</span>
+					{% endif %}
+
+					{% if obj.publish > today_date %} <span style="color : purple"> Future_Post</span>
+            		{% endif %}</h5>
+
+				<p class="card-caption">{{ obj.post_content }}</p>
+
+					<button class="btn btn-outline-info"><a href="{% url 'post_detail' pk=obj.pk %}"> Resume reading </a></button>
+
+				<div class="time">
+				<small class="text-muted"> Published on : {{ obj.publish}} </small><br>
+					<small class="pb-3">
+					By:
+					{% if obj.user.get_Full_name %}
+            		{% endif %}
+				</small>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- sSecond card here -->
+		<div class="card">
+			<img class= "cardimg" src="{{ obj.image.url }}" alt="img">
+			<div class="card-body">
+				<h5 class="card-title"> {{ obj.post_title }} |
+				 {% if obj.draft %}
+            		<span style="color: red"> DRAFT</span>
+					{% endif %}
+
+					{% if obj.publish > today_date %} <span style="color : purple"> Future_Post</span>
+            		{% endif %}</h5></h5>
+				<p class="card-caption"> {{ obj.post_content }} </p>
+
+				<button class="btn btn-outline-info"><a href="{% url 'post_detail' pk=obj.pk %}"> Resume reading </a></button>
+				<div class="time">
+				<small class="text-muted"> Published on : {{ obj.publish}} </small><br>
+					<small class="pb-3">
+					By:
+					{% if obj.user.get_Full_name %}
+            		{% endif %}
+				</small>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<div class="clearfooter"></div>
+
+</section>
+
+</body>
+
+</html>
+
+{% endfor %}
+
+{% endblock content %}
+
+
+
+        <!-- Pagination order -->
+<div class="pagination">
+    <span class="step-links">
+        {% if allcategories.has_previous %}
+            <a href="?{{page_var}}={{ allcategories.previous_page_number }}
+            {% if request.GET.query_post  %}
+            & query_post = {{ request.GET.query_post }} {% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ allcategories.number }} of {{ allcategories.paginator.num_pages }}.
+        </span>
+
+        {% if allcategories.has_next %}
+            <a href="?{{page_var}}={{ allcategories.next_page_number }}
+            {% if request.GET.query_post %}
+            & query_post= {{ request.GET.query_post }}{% endif %}">next</a>
+
+        {% endif %}
+    </span>
+</div>
+
+
+</body>
+</html>
+
+
+{% include "footer.html" %}
+
+
+

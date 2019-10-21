@@ -1,0 +1,164 @@
+{% load static %}
+{% include "navigation.html" %}
+{% include "cover_page.html" %}
+
+{% include 'side_bar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "head.html" %}
+</head>
+
+<body>
+
+    <h2 class="mainheader pt-3 text-center"> POSTS SECTION </h2>
+
+    <!-- Show messages here -->
+    <div class=" messages pt-3" style="width : 20%">
+        {% include "messages.html" %}
+    </div>
+
+    {% for allposts in myposts %}
+    <section id="cardgroup">
+        <!-- Cards section starts here -->
+        <div class="cards">
+            <!-- first card here -->
+            <div class="card">
+                {% if allposts.image %}
+                <img class="cardimg" src="{{ allposts.image.url }}" alt="img">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title"> {{ allposts.post_title }} | {% if allposts in myposts %}
+
+                        {% endif %} ||
+
+                        {% if allposts.draft %}
+                        <span style="color: red"> DRAFT</span>
+                        {% endif %}
+
+
+                        {% if allposts.publish > today_date %} <span style="color : purple"> Future_Post</span>
+                        {% endif %}</h5>
+
+                    <p class="card-caption">{{ allposts.post_content }}</p>
+
+                    <button class="btn btn-outline-info"><a href="{% url 'post_detail' pk=allposts.pk %}"> Resume
+                            reading
+                        </a>
+                    </button>
+
+                    <div class="time">
+                        <small class="text-muted"> Published on : {{ allposts.publish}}</small>
+                        <br>
+                        <small class="pb-3 ">
+                            By:
+                            {% if allposts.user.get_full_name %}
+                            {{ allposts.user.get_full_name }}
+                            {% endif %}
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- sSecond card here -->
+            <div class="card">
+                <!-- second card here -->
+                <div class="card">
+                    {% if allposts.image %}
+                    <img class="cardimg" src="{{ allposts.image.url }}" alt="img">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ allposts.post_title }} |
+                            {% if allposts.draft %}
+                            <span style="color: red"> DRAFT</span>
+                            {% endif %}
+
+                            {% if allposts.publish > today_date %} <span style="color : purple"> Future_Post</span>
+                            {% endif %}</h5>
+
+                        <p class="card-caption">{{ allposts.post_content }}</p>
+
+                        <hr class="light">
+                        {% if allposts in myposts %}
+                        <u><b>Category</b> </u>: {{ allposts.category.category_name }}
+                        {% endif %}
+
+                        <br>
+
+                        <button class="btn btn-outline-info mt-3"><a href="{% url 'post_detail' pk=allposts.pk %}">
+                                Resume
+                                reading
+                            </a>
+                        </button>
+
+                        <div class="time">
+                            <small class="text-muted"> Published on : {{ allposts.publish}}</small>
+                            <br>
+                            <small class="pb-3 ">
+                                By:
+                                {% if allposts.user.get_full_name %}
+                                {{ allposts.user.get_full_name }}
+                                {% endif %}
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    {% endfor %}
+
+    <!-- pagination 
+    <div class="container mr-5">
+        <nav class="page-navigation example mt-3" style="margin : 0 auto ;">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="">previous</a></li>
+                <li class="page-item"><a class="page-link" href="">1</a></li>
+                <li class="page-item"><a class="page-link" href="">2</a></li>
+                <li class="page-item"><a class="page-link" href="">next</a></li>
+
+            </ul>
+        </nav>
+
+
+    </div>
+-->
+
+<!---->
+    {% if is_paginated %}
+    <div class="container m-auto">
+        <nav class="page-navigation ">
+            <ul class="pagination ">
+                {% if page_obj.has_previous %}
+                <li>
+                    <span><a href="?    ={{ page_obj.previous_page_number }}">Previous</a></span>
+                </li>
+                {% endif %}
+                <li class="">
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                </li>
+                {% if page_obj.has_next %}
+                <li>
+                    <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% else %}
+    <h3>Your File Exam</h3>
+    <p>File not yet available</p>
+    {% endif %}
+
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

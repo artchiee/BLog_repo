@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- css styling -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+</head>
+
+
+<!-- New post section grid  usig flex boxes -->
+<aside>
+    <div class="sidebar mt-3 mr-3 pr-3 m-0-auto">
+        <div class="flexside1">
+            <h2 class="mb-3 pb-4" style="color :orange ; "> Side Bar </h2>
+            <h2> Categories : </h2>
+            <div class="row">
+                {% for obj in myposts %}
+                <button class="btn btn-outline-info">{{ obj.category.category_name }}</button>
+                {% endfor %}
+            </div>
+            <br>
+
+        </div>
+
+        <hr class="light">
+
+
+        <div class="flexside3 pt-3 pb-4">
+            <h2> Search Posts </h2>
+
+            {% if request.user.is_authenticated %}
+            <form id="search" class="form-inline my-2 my-lg-0 m-auto  " method="get" action="#">
+                <div class="input-group">
+                    <input class="form-control mr-sm-2" name="query_post" value="{{ request.GET.query_post }}"
+                           type="text"
+                           placeholder="Search and go ... " aria-label="search">
+                    <div class="input-group-append">
+    	             <span class="input-group-btn">
+    	                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search <i
+                                class="fas fa-1x fa-search"></i></button>
+    	             </span>
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+
+        <hr class="light">
+
+
+        <div class="flexside4">
+            <h2> Recent Posts here !!</h2>
+            {% for obj in myposts %}
+            <div class="row" style="border : 1px solid">
+                {% if obj.image %}
+                    <img src="{{ obj.image.url }}" style="max-width:25%; ">
+                {% endif %}
+                <p class="pl-3 pt-3" style="text-decoration : underline ; "> {{ obj.post_title }}</p>
+            </div>
+            <br>
+
+            {% endfor %}
+
+        </div>
+
+
+        </li>
+    </div>
+    </div>
+
+
+    <hr class="light">
+
+
+    <div class="flexside5">
+        <h2></h2>
+        <p></p>
+    </div>
+
+    </div>
+
+</aside>
+
+
+</body>
+</html>

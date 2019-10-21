@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% include "navigation.html" %}
+{% load crispy_forms_tags %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% include "head.html" %}
+</head>
+<body>
+
+
+{% block content %}
+
+<div class="Comment mr-5 " style="margin : 5rem  ;">
+<h1> New Comment </h1>
+
+
+<h2 class="user_comment"> Comment by : {{ request.user.email}} </h2>
+
+<!-- future_task  : getting the selected post-->
+
+    <h2 class=""> post name  : {{ allposts.post_title }} </h2>
+
+<form method="post" class="post-form">
+    {% csrf_token %}
+    {{ form | crispy }}
+
+    <button class="btn btn-outline-success"> Submit a Comment</button>
+</form>
+
+</div>
+
+{% endblock %}
+
+
+</body>
+</html>
