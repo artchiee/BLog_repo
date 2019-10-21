@@ -81,14 +81,15 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+        # Serving static fies with whitenoise module 
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # Serving static fies with whitenoise module 
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+
 ]
 
 # Addinding the static files storage / Simplify the serving proccess !
@@ -163,21 +164,20 @@ USE_TZ = True
 
 
 # Deployment
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "live-static", "static-root")
 
 STATIC_URL = '/static/'
 
 #  static Dirs for additionally pointing to static location !!!
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "static"),
 )
-
 
 # Media Config
 MEDIA_URL = '/media/'   
 
 # Deployemnt
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_collected')
+MEDIA_ROOT = os.path.join(BASE_DIR, "live-static", "media-root")
 
 
 # Setting a Logout redirect url
