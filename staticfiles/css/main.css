@@ -1,0 +1,229 @@
+
+/* Html page and Body html */
+
+html, body {
+    height: 100%;
+    font-size: 12px;
+}
+
+/* navigation style */
+
+#mainnav .navbar-brand {
+    color : red ; 
+}
+
+#mainnav  .nav-link {
+    color : white ;
+}
+
+
+/* cover style */
+#cover {
+    background: url( '/static/images/n2.jpg' ) no-repeat center;
+    background-size: cover ;
+    background-position: top  ;
+    max-width: 100%;
+    background-repeat: no-repeat ;
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+#cover .content {
+    margin : auto ; 
+}
+
+#cover h1.header-caption { 
+    color : crimson  ; 
+    text-transform: uppercase ; 
+    font-size: 60px;
+}
+
+#cover p.cover-caption {
+    font-size: 20px;
+    color : black ; 
+
+}
+
+/* index style */
+h2 .mainheader{
+    color :  orange;  
+    text-transform: uppercase ; 
+}
+
+/*     */
+.card .cardimg {
+    max-width: 100%;
+    max-height: 100% ; 
+}
+
+#cardgroup {
+    margin : auto ;
+    margin-right : 5rem   ;
+    }
+
+section .cards {
+	display: flex;
+	flex-wrap: wrap;
+	 width:75%;
+	 align-items: flex-start;
+	 margin-left: 3rem ;
+	 flex: 2;
+
+}
+.card {
+    flex: 0 50% !important ;	/* controling flexbox sizing */
+    size: 80% ;
+    box-sizing:none ;
+    justify-content: space-between !important;
+    padding: 10px;
+    margin-bottom: 10px ;
+  
+  
+  }
+
+/*  Css for sidebar */ 
+
+aside {
+	float: right;
+	width: 20% ;
+	margin-left: 5rem ;
+	overflow  : scroll
+	 bottom 0 ;
+}
+
+section .sidebar {
+	display: flex !important ;
+	flex-direction: column;
+	
+}
+
+.sidebar .flexside1{
+	flex : 1 ;
+}
+
+.sidebar .flexside2{
+	flex : 1 ;
+
+}
+
+
+/* footer */
+
+.clearfooter{
+    height: 330px;
+    clear: both;
+    }
+    
+    #footer {
+        background-color: #3f3f3f ;
+         color : #d5d5d5;
+         height: 400px;
+         position: relative ;
+    
+    }
+    
+    .list {
+        list-style-type: circle;
+    }
+    
+    #footer .container  {
+        display: flex;
+        flex: 1 ;
+        align-items: stretch;
+        justify-content: space-between;
+        margin-top: 5rem ;
+         bottom: 0;
+         height: 170px ;
+         padding-top : 2rem ;
+    
+    }
+    
+    .container .flex1 {
+        flex: 2 ;
+    }
+    .container .flex2 {
+        flex : 1 ;
+    }
+    .container .flex3 {
+        display: flex;
+    
+    }
+    
+    .container .row {
+        box-sizing: border-box;
+        flex-basis: 30% ;
+    }
+    
+    
+    /* stay connected section */
+    
+    .list:hover{
+        color: orange ;
+    }
+    
+    hr.light {
+        border-top: 1px solid #d5d5d5 ;
+        width: 100%;
+        left:  0 ;
+        right: 0 ;
+    }
+    
+    .social{
+        margin: auto ;
+    }
+    
+    
+    .social a {
+        font-size: 2rem ;
+        padding: 2.0rem ;
+    }
+    
+    .fa-facebook {
+        color: rgb(37, 63, 184);
+    }
+    .fa-twitter {
+        color: rgb(111, 179, 204);
+    }
+    .fa-google-plus-g {
+        color: rgb(227, 87, 87);
+    }
+
+    /*  Contact me page style  */ 
+
+    .contact-form{
+        margin: 0 auto ;
+        margin-left: 30% ;
+    
+    }
+    #contact-form {
+        margin-top: 50px ;
+        transition: all 4s ease-in-out;
+    }
+    
+    .form-control {
+        width: 600px ;
+        background: transparent;
+        border: none;
+        outline: none;
+        border-bottom:  1px solid gray ;
+        font-size: 18px ;
+        margin-bottom: 16px ;
+    }
+    
+    
+    .label {
+    
+        opacity: 1 ;
+        color: blue ;
+        font-size: 20px ;
+    }
+    
+
+
+
+
+
+
