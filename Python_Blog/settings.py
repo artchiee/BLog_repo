@@ -168,8 +168,12 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 
 # Deployment
-STATIC_ROOT = os.path.join(BASE_DIR, "live-static", "static-root")
+STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, "staticfiles"))
 
+# When run collectstatic static dirs will point to the correct s.file
+STATICFILES_DIRS =(
+    os.path.join(BASE_DIR, 'static')
+)
 
 # Media Config
 MEDIA_URL = '/media/'   
