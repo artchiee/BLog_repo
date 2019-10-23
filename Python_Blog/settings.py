@@ -92,9 +92,6 @@ MIDDLEWARE = [
 
 ]
 
-# Addinding the static files storage / Simplify the serving proccess !
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 #Adding the  compress 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
@@ -168,12 +165,15 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 
 # Deployment
-STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, "staticfiles"))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 
 # When run collectstatic static dirs will point to the correct s.file
 STATICFILES_DIRS =(
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(PROJECT_ROOT, 'static'),
 )
+
+# Addinding the static files storage / Simplify the serving proccess !
+
 
 # Media Config
 MEDIA_URL = '/media/'   
@@ -197,38 +197,15 @@ del DATABASES['default'] ['OPTIONS'] ['sslmode']
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
-                       'pathname=%(pathname)s lineno=%(lineno)s '
-                       'funcname=%(funcName)s %(message)s'),
-            'datefmt': '%Y-%m-%d %H:%M:%S'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        }
-    },
     'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
         'console': {
-            'level': 'INFO',
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
+        },
     },
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
+             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
         },
-        'django.request': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-    }
+    },
 }
