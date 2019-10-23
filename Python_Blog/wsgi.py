@@ -15,5 +15,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Python_Blog.settings')
 
 application = get_wsgi_application()
 
-# using white noise to serve static files
-application = DjangoWhiteNoise(application)
