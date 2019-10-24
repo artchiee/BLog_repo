@@ -173,7 +173,7 @@ STATICFILES_DIRS =(
 )
 
 # Addinding the static files storage / Simplify the serving proccess !
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media Config
 MEDIA_URL = '/media/'   
