@@ -63,7 +63,10 @@ coverage.xml
 
 # Django stuff:
 *.log
+<<<<<<< HEAD
 *.pyc
+=======
+>>>>>>> f3e93c4754d7adb580917cce3cf632ac1410d688
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
