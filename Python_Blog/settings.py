@@ -92,6 +92,12 @@ MIDDLEWARE = [
 
 ]
 
+<<<<<<< HEAD
+=======
+# Addinding the static files storage / Simplify the serving proccess !
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+>>>>>>> f3e93c4754d7adb580917cce3cf632ac1410d688
 #Adding the  compress 
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
