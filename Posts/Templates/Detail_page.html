@@ -1,0 +1,136 @@
+{% load staticfiles %}
+{% include "navigation.html" %}
+
+
+{% block content %}
+
+
+<html>
+
+<head>
+    {% include "head.html" %}
+
+</head>
+
+<body>
+
+    <div class="col-smx-6 col-sm-offset-3">
+        <div class="container mt-4 pt-4">
+            <!-- Show messages here -->
+            <div class=" messages pt-3">
+
+            </div>
+
+            <div id="detailimg" class="mt-0-auto mr-4" style="max-width : 70% ;">
+                {% if instance.image %}
+                <img class="img-fluid img-responsive" src="{{instance.image.url}}" />
+                {% endif %}
+            </div>
+            <h1>{{instance.post_title}} -- Published on :<small>{{instance.publish}}</small> </h1>
+            {% if instance.draft or instance.publish > today_date%}
+            <span style="color : red"> Draft </span> and
+            <span style="color : purple"> Future post </span>
+            {% endif %}
+
+
+            <hr class="light-sm">
+
+            <div class="row">
+                <h3 class="display-4"> CONTENT : </h3>
+                <h2 class=display-5 style="color: grey ; text-transform: lowercase ; "> {{instance.post_content}} </h2>
+
+                <!-- Display these f user-admin logged in or user who post the post -->
+
+                {% if request.user == instance.user or request.user.is_admin  %}
+                <div class="delete ml-auto mr-2">
+                    <button class="btn btn-outline-danger"><i class="fa fa-trash pr-1" aria-hidden="true"></i>
+                        <a href="{% url 'delete_your_post' pk=instance.pk %}">Delete this Post</a></button>
+                </div><br>
+                <div class="update">
+                    <button class="btn btn-outline-info"><i class="fa fa-wrench pr-2" aria-hidden="true">
+                        </i><a href="{% url 'UpdatePosts' pk=instance.pk %}">Update this Post</a></button>
+                </div>
+
+                {% endif %}
+
+
+                <div class="col-sm-12">
+                    <div class="content-markdown">
+                        <small class="display-5"> {{instance.content }}<br></small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="author pt-3" style="text-transform : bold; ">
+                {% if instance.user.get_full_name %}
+                <p> ATHOR : {{ instance.user.get_full_name }}</p>
+                {% endif %}
+            </div>
+
+
+            <h4>CATEGORY : <a href="{% url 'category_list' instance.category.pk %}">{{instance.category}} </a></h4>
+
+            <!-- like buttons -->
+
+            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count"
+                data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+
+            <hr class="lg-light">
+
+            <!--  comments here  / approved comments  or Not  -->
+
+            <!-- Logique for handling comments -->
+
+            {% if request.user.is_authenticated %}
+            {% for comment in instance.post_comment.all %}
+            <div class="comments" style=" margin: 20px 0px 20px 20px;">
+                <div class="date">
+                    <p> created at : {{ comment.created_at  }}</p>
+
+                    <strong> By Author : {{ comment.user }} </strong>
+                    {{linebreaks}}
+                    <br>
+
+                    <!-- Later task : Show these if the active or admin user -->
+
+                    <!-- Display these if the active user logged in and 
+                            admin user logged out -->
+
+                    {% if request.user.is_active and request.user == comment.user %}
+                    <div class="access" style="float : right  ;">
+                        <button class="btn btn-outline-danger mb-3"><i class="fa fa-times" aria-hidden="true">
+                                <a href="{% url 'delete_own_comment' pk=comment.pk %}">Delete your comment
+                                </a></i></button>
+                        <br>
+
+                        <button class="btn btn-outline-success"><i class="fa fa-wrench" aria-hidden="true">
+                                <a href="{% url 'update_comment' pk=comment.pk %}">Update your comment </a></i></button>
+                    </div>        
+
+                    {% endif %}
+
+                    <!-- Show  content of the comments -->
+                    <div class="">
+                        <p class="text-comment">
+                            {{ comment.text | linebreaks }}</p>
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+            {% endif %}
+
+
+        </div>
+
+        <div class="clearfooter"></div>
+
+    </div>
+
+</body>
+
+</html>
+
+{% include 'footer.html' %}
+{% endblock content %}

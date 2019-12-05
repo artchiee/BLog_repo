@@ -1,0 +1,27 @@
+<!-- Here we inherent the base templates from posts app -->
+{% load static %}
+
+{% include "navigation.html" %}
+{% include "head.html" %}
+
+
+    {% block content %}
+
+        <div class="container">
+            <div class="content-section">
+                    <div class="col-sm-4 pt-5">
+                   
+                        <small class="text-lg">
+                            <h2 class="display-2"> Your Successfully logged out </h2>
+                            <a class="" href="#"> Log in Now !!! </a>
+                        </small>
+                    </div>
+            </div>
+
+            <div class="clearfooter"></div>
+        </div>
+
+    {% endblock content %}
+
+
+

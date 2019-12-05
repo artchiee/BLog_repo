@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    {% include "head.html" %}
+</head>
+
+<body>
+
+    <!-- NAv-bar -->
+
+    <nav id="mainnav" class="navbar navbar-expand-lg navbar-light bg-dark">
+
+        <button class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbardropdownmenu"
+            data-toggle="collapse" data-target="#navbardropdownmenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" id="icon"></span>
+        </button>
+
+        <div class="main mr-6">
+            <ul class="navbar-nav mr-4.3">
+
+                <a class="navbar-brand " href="{% url 'Index' %}">Brand</a>
+                <div class="navbar-collapse collapse mr-auto" id="navbardropdownmenu">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'Index' %}"><i class="fas fa-home mr-2"></i>Home</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'Index' %}"><i class="fas fa-people mr-2"></i>About me </a>
+                    </li>
+                    <!---->
+                    <li class="nav-item ">
+
+                        <a class="nav-link" href="{% url 'contact_home' %}"><i
+                                class="fas fa-file-signature mr-2"></i>Contact</a>
+                        </l>
+
+
+                </div>
+            </ul>
+        </div>
+
+        <!-- Float these permissions to right -->
+
+        {% if request.user.is_authenticated %}
+        <div class="m-auto">
+
+            <form id="search" class="form-inline my-2 my-lg-0 pt-0" method="get" action="#">
+                <div class="input-group">
+                    <input class="form-control mr-sm-2" name="query_post" value="{{ request.GET.query_post }}" type="text"
+                        placeholder="Search and go ... " aria-label="search">
+                    <div class="input-group-append">
+                        <span class="input-group-btn">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> <i
+                                    class="fas fa-1x fa-search">Search</i></button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <ul class="navbar-nav" style=" float: right !important; padding-left :6rem ; ">
+
+            <!-- Dropdown for email and profile -->
+
+            <div class="email">
+                <a class="nav-link" href="{% url 'profile_page' %}"><i class="fas fa-envelope-open-text"></i>
+                    {{ request.user.get_full_name }}</a>
+            </div>
+
+            <div class="myprofile">
+                <a class="nav-link" href="{% url 'profile_page' %}"><i class="fas fa-user-circle mr-2">Your
+                        Profile</i></a>
+
+            </div>
+
+
+
+            </li>
+
+            <!--  permissions   -->
+            <li class="nav-item permission">
+                <a class="nav-link" href="{% url 'Create_post' %}"><i class="fas fa-plus mr-2"></i> Create a new
+                    Post</a>
+            </li>
+            <li class="nav-item permission ">
+                <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-in-alt mr-2"></i>logout </a>
+
+
+
+        </ul>
+
+        {% else %}
+        <div class="ml-auto">
+            <li class="nav-item permission  ml-4">
+                <a class="nav-link" href="{% url 'Login' %}"><i class="fas fa-sign-in-alt mr-2"></i>Login </a>
+            </li>
+        </div>
+        <div>
+            <li class="nav-item permission">
+                <a class="nav-link" href="{% url 'Register' %}"><i class="fas fa-user-circle mr-2"></i>Register</a>
+            </li>
+        </div>
+
+
+        {% endif %}
+
+    </nav>
+
+
+
+
+</body>
+
+</html>
