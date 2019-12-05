@@ -1,4 +1,4 @@
--i https://pypi.org/simple
+-i https://pypi.org/simple/
 appdirs==1.4.3
 attrs==19.1.0
 autopep8==1.4.4
@@ -9,7 +9,7 @@ click==7.0
 dj-database-url==0.5.0
 django-crispy-forms==1.7.2
 django-heroku==0.3.1
-django==2.2.4
+django==2.2.8
 entrypoints==0.3
 gunicorn==19.9.0
 idna==2.8
