@@ -47,14 +47,10 @@ SECRET_KEY = os.environ.get('Secret_Key')
 # Turning debug into condition boolean when going Live
 
 
-# etting Debug value to False whene going Live 
-<<<<<<< HEAD
-DEBUG = True 
-=======
-DEBUG = False 
->>>>>>> a92456087e31f120c2a3ca16363eefd60b2fb07d
+# setting Debug value to False whene going Live
+DEBUG = False
 
-# Allowing hosts for assccessing the site 
+# Allowing hosts for assccessing the site
 ALLOWED_HOSTS = ['bloggingtopics.herokuapp.com']
 
 
