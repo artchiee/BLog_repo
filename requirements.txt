@@ -1,8 +1,8 @@
--i https://pypi.org/simple
+-i https://pypi.org/simple/
 appdirs==1.4.3
 attrs==19.1.0
 autopep8==1.4.4
-beautifulsoup4==4.8.1
+beautifulsoup4==4.9.3
 certifi==2018.11.29
 chardet==3.0.4
 click==7.0
@@ -14,14 +14,14 @@ entrypoints==0.3
 gunicorn==19.9.0
 idna==2.8
 mccabe==0.6.1
-pillow==6.2.0
+pillow==8.1.1
 psycopg2==2.8.3
 pycodestyle==2.5.0
 pyflakes==2.1.1
 python-dotenv==0.10.3
 pytz==2019.2
 rebound-cli==2.0.0
-requests==2.22.0
+requests==2.25.1
 sentry-sdk==0.9.5
 soupsieve==1.8
 sqlparse==0.3.0
