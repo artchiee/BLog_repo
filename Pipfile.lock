@@ -358,7 +358,7 @@
                 "sha256:7c9db0e419fb0fb31c1b1d2ec9247667d2b77bd4f3136119ee6f1464e9b088a4"
             ],
             "index": "pypi",
-            "version": "==0.9.5"
+            "version": "==1.14.0"
         },
         "soupsieve": {
             "hashes": [
