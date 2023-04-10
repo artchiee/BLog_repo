@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-appdirs = "==1.4.3"
+appdirs = "==1.4.4"
 attrs = "==19.1.0"
 autopep8 = "==1.4.4"
 certifi = "==2018.11.29"
